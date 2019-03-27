@@ -26,7 +26,6 @@ public class MediaMuxerRunnable extends Thread {
     public static final int MEDIA_TRACK_AUDIO = 1;
     public static final int MEDIA_TRACK_VIDEO = 2;
 
-    private AudioRunnable mAudioRunnable;
     private VideoRunnable mVideoRunnable;
     private final Object lock = new Object();
 
@@ -69,9 +68,6 @@ public class MediaMuxerRunnable extends Thread {
             mListener.onStart();
         }
         initMuxer();
-        mAudioRunnable = new AudioRunnable(mVideoInfos, this);
-        mVideoRunnable = new VideoRunnable(mVideoInfos, this);
-        mAudioRunnable.start();
         mVideoRunnable.start();
     }
 
